@@ -10,21 +10,46 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:naviagtion_unit_testen/main.dart';
 
+class SecondRoute extends StatelessWidget {
+  var amountBack = 100;
+  goBackTextAdd() {
+    var goBackText =
+        "I have told you " + amountBack.toString() + " times already. Go back!";
+    return goBackText;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text(goBackTextAdd()),
+        ),
+      ),
+    );
+  }
+}
+
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  test('Counter amountBack should be at 100', () {
+    var amountBack = 100;
+    goBackTextAdd() {
+      var goBackText = "I have told you " +
+          amountBack.toString() +
+          " times already. Go back!";
+      return goBackText;
+    }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    final secondRoute = SecondRoute();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    secondRoute.goBackTextAdd();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(secondRoute.amountBack, 100);
   });
 }

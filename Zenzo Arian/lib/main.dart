@@ -85,6 +85,13 @@ class FirstRoute extends StatelessWidget {
 }
 
 class SecondRoute extends StatelessWidget {
+  var amountBack = 100;
+  goBackTextAdd() {
+    var goBackText =
+        "I have told you " + amountBack.toString() + " times already. Go back!";
+    return goBackText;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +103,7 @@ class SecondRoute extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('Go back!'),
+          child: Text(goBackTextAdd()),
         ),
       ),
     );
